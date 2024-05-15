@@ -46,8 +46,15 @@ export const StoreModal = () => {
       // Attempt to create a new store
       const response = await axios.post("/api/stores", values);
 
-      console.log("Response", response.data);
+      // This ain't necessary but it's good to know
+      console.log("Success Response", response.data);
       toast.success("Store created successfully");
+
+      // The reason we're using window.location.assign instead of router from next navigation
+      // because this method does a complete refresh of the page. Meaning that the line:
+      // const response = await axios.post("/api/stores", values);
+      // Will 100% be in the database.
+      window.location.assign(`/${response.data.id}`);
     } catch (error) {
       console.error("onSubmit error: ", error);
       toast.error("An error occurred. Please try again.");
