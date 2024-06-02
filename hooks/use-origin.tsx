@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+// This is so that we don't get a hydration error in settings-form.tsx
 export function useOrigin() {
   const [mounted, setMounted] = useState(false);
   const origin =
