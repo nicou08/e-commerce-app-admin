@@ -23,9 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
-import ApiAlert from "@/components/ui/api=alert";
 import { ImageUpload } from "@/components/ui/image-upload";
-import { useOrigin } from "@/hooks/use-origin";
 
 const formSchema = z.object({
   label: z.string().min(1),
@@ -48,7 +46,6 @@ interface BillboardFormProps {
 export default function BillboardForm({ initialData }: BillboardFormProps) {
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -92,6 +89,7 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
       }
 
       router.refresh();
+      router.push(`/${params.storeId}/billboards`);
 
       // This toast message is already checking if there is
       // an initialData.
@@ -113,7 +111,7 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
       );
 
       router.refresh();
-      router.push("/");
+      router.push(`/${params.storeId}/billboards`);
       toast.success("Billboard deleted successfully");
     } catch (error) {
       console.error("onDelete error: ", error);
@@ -195,7 +193,6 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
           </Button>
         </form>
       </Form>
-      <Separator />
     </>
   );
 }
