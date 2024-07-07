@@ -98,20 +98,4 @@ export function CellAction({ data }: CellActionProps) {
       </DropdownMenu>
     </>
   );
-
-  // return (
-  //   <Button variant="ghost" className="h-8 w-8 p-8">
-  //     <span className="sr-only">Open menu</span>
-  //     test
-  //     <ArrowLeft size={24} color="blue" />
-  //   </Button>
-  // );
-
-  // return (
-  //   <Button variant="ghost" className="h-8 w-8 p-8">
-  //     <div>
-  //       <MoreHorizontal className="h-4 w-4" />
-  //     </div>
-  //   </Button>
-  // );
 }
