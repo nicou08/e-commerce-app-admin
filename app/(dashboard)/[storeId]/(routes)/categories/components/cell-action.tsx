@@ -16,10 +16,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { AlertModal } from "@/components/modals/alert-modal";
 
-import { BillboardColumn } from "./columns";
+import { CategoryColumn } from "./columns";
 
 interface CellActionProps {
-  data: BillboardColumn;
+  data: CategoryColumn;
 }
 
 export function CellAction({ data }: CellActionProps) {
@@ -31,7 +31,7 @@ export function CellAction({ data }: CellActionProps) {
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Billboard Id copied to clipboard");
+    toast.success("Category Id copied to clipboard");
   };
 
   // This onDelete function is a copy of the billboard-form.tsx onDelete function
@@ -41,17 +41,17 @@ export function CellAction({ data }: CellActionProps) {
     try {
       setLoading(true);
 
-      await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/categories/${data.id}`);
 
       router.refresh();
 
       // We don't need any redirect here
       //router.push("/");
-      toast.success("Billboard deleted successfully");
+      toast.success("Category deleted successfully");
     } catch (error) {
       console.error("onDelete error: ", error);
       toast.error(
-        "Make sure you removed all categories before deleting the billboard."
+        "Make sure you removed all products using this category first."
       );
     } finally {
       setLoading(false);
@@ -84,7 +84,7 @@ export function CellAction({ data }: CellActionProps) {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id}`)
+              router.push(`/${params.storeId}/categories/${data.id}`)
             }
           >
             <Edit className="mr-2 h-4 w-4" />
